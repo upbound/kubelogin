@@ -15,6 +15,10 @@ type TokenProvider interface {
 	Token() (adal.Token, error)
 }
 
+func NewTokenProvider(o *Options) (TokenProvider, error) {
+	return newTokenProvider(o)
+}
+
 func newTokenProvider(o *Options) (TokenProvider, error) {
 	oAuthConfig, err := getOAuthConfig(o.Environment, o.TenantID, o.IsLegacy)
 	if err != nil {
